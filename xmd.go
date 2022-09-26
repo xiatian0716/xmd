@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/xiatian0716/xmd/cmd"
 	"github.com/xiatian0716/xmd/gRPC/getProtoTmpl"
+	"github.com/xiatian0716/xmd/gRPC/protoToCode"
 )
 
 func main() {
@@ -11,4 +12,5 @@ func main() {
 
 func init() {
 	getProtoTmpl.PrototmplGenCmdSetup()
+	protoToCode.ProtoToCodeCmdSetup()
 }

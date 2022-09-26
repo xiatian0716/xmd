@@ -25,7 +25,7 @@ func RPCTemplate(_ *cobra.Command, _ []string) error {
 }
 
 var prototmplGenCmd = &cobra.Command{
-	Use:   "proto",
+	Use:   "protoT",
 	Short: "proto模板",
 	Long:  `proto模板，并指定模板名称`,
 	RunE:  RPCTemplate,
@@ -33,7 +33,7 @@ var prototmplGenCmd = &cobra.Command{
 
 func PrototmplGenCmdSetup() {
 	cmd.RootCmd.AddCommand(prototmplGenCmd)
-	VarStringOutput = *prototmplGenCmd.Flags().StringP("protoname", "p", "helloworld.proto", "生成proto文件的名字")
+	VarStringOutput = *prototmplGenCmd.Flags().StringP("protoname", "p", "hello.proto", "生成proto文件的名字")
 	//.BoolP(“toggle”，“t”，false，“切换的帮助消息”)
 	//在这里，您将定义标志和配置设置。
 	//Cobra支持用于此命令的Flag以及所有子命令，例如：
