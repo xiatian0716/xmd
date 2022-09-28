@@ -6,7 +6,6 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xiatian0716/xmd/cmd"
 	"github.com/xiatian0716/xmd/gRPC/getProtoTmpl/prototmplGen"
-	"github.com/xiatian0716/xmd/util/enhance"
 )
 
 var (
@@ -15,13 +14,11 @@ var (
 
 // RPCTemplate is the entry for generate rpc template
 func RPCTemplate(_ *cobra.Command, _ []string) error {
-	enhance.Warning("记得传入文件名字")
 	protoFile := *protoFileName
-
 	if len(protoFile) == 0 {
-		return errors.New("missing -o")
+		return errors.New("缺少flag -f")
 	}
-	fmt.Println(protoFile)
+	fmt.Println(fmt.Sprintf("正在生成：%s", protoFile))
 
 	return prototmplGen.ProtoTmpl(protoFile)
 }
@@ -35,7 +32,7 @@ var prototmplGenCmd = &cobra.Command{
 
 func PrototmplGenCmdSetup() {
 	cmd.RootCmd.AddCommand(prototmplGenCmd)
-	protoFileName = prototmplGenCmd.Flags().StringP("protoname", "n", "hello.proto", "生成proto文件的名字")
+	protoFileName = prototmplGenCmd.Flags().StringP("protofilename", "f", "hello.proto", "生成proto文件的名字")
 	//.BoolP(“toggle”，“t”，false，“切换的帮助消息”)
 	//在这里，您将定义标志和配置设置。
 	//Cobra支持用于此命令的Flag以及所有子命令，例如：
