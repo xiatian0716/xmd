@@ -1,6 +1,9 @@
 .vscode
 .idea
 
+# proto
+/hello
+
 # goweb
 *.log
 *.exe

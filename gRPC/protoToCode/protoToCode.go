@@ -7,7 +7,7 @@ import (
 	"github.com/xiatian0716/xmd/cmd"
 	"github.com/xiatian0716/xmd/gRPC/protoToCode/hello"
 	"github.com/xiatian0716/xmd/gRPC/protoToCode/hello/client"
-	"github.com/xiatian0716/xmd/gRPC/protoToCode/hello/service"
+	"github.com/xiatian0716/xmd/gRPC/protoToCode/hello/rpc"
 	"github.com/xiatian0716/xmd/gRPC/protoToCode/protoGen"
 	"github.com/xiatian0716/xmd/gRPC/protoToCode/tools"
 	"github.com/xiatian0716/xmd/util/enhance"
@@ -68,8 +68,8 @@ func protoToCode(_ *cobra.Command, args []string) error {
 		return err
 	}
 	// 生成service
-	outServiceFileName := "./" + projectName + "/service/service.go"
-	err = protoGen.GenCodeTmpl(service.GetServiceTpl(), outServiceFileName, gomoddata)
+	outServiceFileName := "./" + projectName + "/rpc/rpc.go"
+	err = protoGen.GenCodeTmpl(rpc.GetRpcTpl(), outServiceFileName, gomoddata)
 	if err != nil {
 		return err
 	}

@@ -19,8 +19,8 @@ func MakeGencodeDir(projectName string) error {
 		return err
 	}
 	// 服务端目录
-	ServiceOutAbs := filepath.Join(GenProjectOutAbs, "./service")
-	err = filex.MkdirIfNotExist(ServiceOutAbs)
+	rpcOutAbs := filepath.Join(GenProjectOutAbs, "./rpc")
+	err = filex.MkdirIfNotExist(rpcOutAbs)
 	if err != nil {
 		return err
 	}
