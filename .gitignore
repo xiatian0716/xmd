@@ -1,2 +1,7 @@
 .vscode
 .idea
+
+# goweb
+*.log
+*.exe
+/goweb/goweb
