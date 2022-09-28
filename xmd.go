@@ -13,4 +13,5 @@ func main() {
 func init() {
 	getProtoTmpl.PrototmplGenCmdSetup()
 	protoToCode.ProtoToCodeCmdSetup()
+	protoToCode.ProtoToCodeCmdProSetup()
 }

@@ -15,8 +15,8 @@ import (
 )
 
 var (
-	GoModInit *string
-	ProtoFile *string
+	goModInit *string
+	protoFile *string
 )
 
 var protoToCodeCmd = &cobra.Command{
@@ -28,14 +28,14 @@ var protoToCodeCmd = &cobra.Command{
 
 func ProtoToCodeCmdSetup() {
 	cmd.RootCmd.AddCommand(protoToCodeCmd)
-	ProtoFile = protoToCodeCmd.Flags().StringP("protofile", "f", "", "选择Proto文件")
-	GoModInit = protoToCodeCmd.Flags().StringP("gomodinit", "g", "example.com", "初始化go mod init")
+	protoFile = protoToCodeCmd.Flags().StringP("protofile", "f", "", "选择Proto文件")
+	goModInit = protoToCodeCmd.Flags().StringP("gomodinit", "m", "example.com", "初始化go mod init")
 }
 
 func protoToCode(_ *cobra.Command, args []string) error {
 	var projectName string
-	protoFileName := *ProtoFile
-	gomodinit := *GoModInit
+	protoFileName := *protoFile
+	gomodinit := *goModInit
 	//pwd, err := os.Getwd()
 
 	// 创建输出文件夹
@@ -43,10 +43,10 @@ func protoToCode(_ *cobra.Command, args []string) error {
 	if splitProtoFileByDot[len(splitProtoFileByDot)-1] == "proto" {
 		// 获取proto的名称 作为输出项目的名称
 		projectName = strings.Replace(protoFileName, ".proto", "", -1) // -1是全部替换
-		err := tools.MakeGencodeDir(projectName)
-		if err != nil {
-			return err
-		}
+		//err := tools.MakeGencodeDir(projectName)
+		//if err != nil {
+		//	return err
+		//}
 	} else {
 		return errors.New("请输入正确的proto文件名称(--protofile)")
 	}
@@ -54,7 +54,10 @@ func protoToCode(_ *cobra.Command, args []string) error {
 	if len(gomodinit) == 0 {
 		return errors.New("ZRPC: missing --gomodinit")
 	}
-	gomoddata := map[string]string{"gomodinit": gomodinit}
+	data := map[string]string{
+		"gomodinit":   gomodinit,
+		"projectname": tools.Title(projectName),
+	}
 
 	// 生成proto
 	err := protoGen.GenProto(protoFileName)
@@ -63,19 +66,19 @@ func protoToCode(_ *cobra.Command, args []string) error {
 	}
 	// 生成client
 	outClientFileName := "./" + projectName + "/client/client.go" // hello/client/client
-	err = protoGen.GenCodeTmpl(client.GetClientTpl(), outClientFileName, gomoddata)
+	err = protoGen.GenCodeTmpl(client.GetClientTpl(), outClientFileName, data)
 	if err != nil {
 		return err
 	}
-	// 生成service
-	outServiceFileName := "./" + projectName + "/rpc/rpc.go"
-	err = protoGen.GenCodeTmpl(rpc.GetRpcTpl(), outServiceFileName, gomoddata)
+	// 生成rpc
+	outRpcFileName := "./" + projectName + "/rpc/rpc.go"
+	err = protoGen.GenCodeTmpl(rpc.GetRpcTpl(), outRpcFileName, data)
 	if err != nil {
 		return err
 	}
 	// 生成go mod
 	gomodFileName := "./" + projectName + "/go.mod"
-	err = protoGen.GenCodeTmpl(hello.GetGoModTpl(), gomodFileName, gomoddata)
+	err = protoGen.GenCodeTmpl(hello.GetGoModTpl(), gomodFileName, data)
 	if err != nil {
 		return err
 	}

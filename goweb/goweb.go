@@ -9,7 +9,11 @@ import (
 	"context"
 	"fmt"
 	"github.com/xiatian0716/xmd/goweb/api"
+	"github.com/xiatian0716/xmd/goweb/util/conf"
+	"github.com/xiatian0716/xmd/goweb/util/mysqlx"
+	"github.com/xiatian0716/xmd/goweb/util/redisxx"
 	"github.com/xiatian0716/xmd/goweb/util/snowflakex"
+	"github.com/xiatian0716/xmd/goweb/util/zapx"
 	"go.uber.org/zap"
 	"log"
 	"net/http"
@@ -17,11 +21,6 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
-	//"github.com/xiatian0716/xmd/goweb/logic"
-	"github.com/xiatian0716/xmd/goweb/util/conf"
-	"github.com/xiatian0716/xmd/goweb/util/mysqlx"
-	"github.com/xiatian0716/xmd/goweb/util/redisxx"
-	"github.com/xiatian0716/xmd/goweb/util/zapx"
 )
 
 // GoWeb开发较通用的脚手架模板

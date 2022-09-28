@@ -10,7 +10,7 @@ import (
 )
 
 type server struct {
-	proto.UnimplementedHelloServer
+	proto.Unimplemented{{.projectname}}Server
 }
 
 func (s *server) Ping(ctx context.Context, req *proto.Request) (*proto.Response, error) {
@@ -20,7 +20,7 @@ func (s *server) Ping(ctx context.Context, req *proto.Request) (*proto.Response,
 
 func main() {
 	g := grpc.NewServer()
-	proto.RegisterHelloServer(g, &server{})
+	proto.Register{{.projectname}}Server(g, &server{})
 	lis, err := net.Listen("tcp", "0.0.0.0:8002")
 	if err != nil {
 		panic("failed to listen:" + err.Error())

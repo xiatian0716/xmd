@@ -1,12 +1,17 @@
+/**
+* Copyright (C) 2021-2022
+* All rights reserved, Designed By www.github.com/xiatian0716
+* 注意：本软件为www.github.com/xiatian0716开发研制
+ */
 package main
 
 import (
 	"context"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"{{.gomodinit}}/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"{{.gomodinit}}/proto"
 )
 
 func main() {

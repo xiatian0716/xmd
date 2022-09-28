@@ -1,0 +1,36 @@
+app:
+  name: "goweb"
+  mode: "dev"
+  port: 8002
+  version: "v0.0.1"
+
+snowflake:
+  start_time: "2020-07-01"
+  machine_id: 1
+
+auth:
+  jwt_expire: 8760
+
+log:
+  level: "debug"
+  filename: "gorpc.log"
+  max_size: 200
+  max_age: 30
+  max_backups: 7
+
+
+mysql:
+  # host: "47.99.115.xx"
+  host: "47.99.115.xx"
+  port: "xx"
+  user: "xxx"
+  password: "xxx"
+  dbname: 'xxx'
+  max_open_conns: 200
+  max_idle_conns: 50
+redis:
+  host: '47.99.115.xx:xx'
+  password: 'xxx'
+  max_idle: 30
+  max_active: 30
+  idle_timeout: 200
