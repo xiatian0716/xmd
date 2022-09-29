@@ -14,4 +14,5 @@ func init() {
 	getProtoTmpl.PrototmplGenCmdSetup()
 	protoToCode.ProtoToCodeCmdSetup()
 	protoToCode.ProtoToCodeCmdProSetup()
+	protoToCode.ProtoToUpdateCmdSetup()
 }
