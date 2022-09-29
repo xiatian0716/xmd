@@ -3,6 +3,7 @@ app:
   mode: "dev"
   port: 8084
   version: "v0.0.1"
+  page-size: 10
 
 snowflake:
   start_time: "2020-07-01"
