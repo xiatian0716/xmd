@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello world</title>
+
+    <!-- vue2.7开发环境版本，包含了有帮助的命令行警告 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h4>1.组件</h4>
+        <h4>2.父子通信-数据流、事件流</h4>
+        <h4>3.样式绑定-内部、内联</h4>
+        <h4>4.数据监听-3种方法</h4>
+
+        <h4>5.tr is="row"</h4>
+        <h4>6.区分动态组件 v-bind:is="row"</h4>
+        <ul>
+            <!--    <li>第一次提交</li>
+                    <li>第二次提交</li>        -->
+            <li v-for="item in list">{{item}}</li>
+            <br/>
+            <h4>采用组件的方式</h4>
+            <todo-item-comment
+                传递数据 1.声明传值(item in list) 2.传递字符串(item字符串)
+                v-bind:content="item" v-bind:index="index" v-for="(item,index) in list"
+                监听方法
+                @delete="dosomething"
+            ></todo-item-comment>
+        </ul>
+    </div>
+
+    <script>
+
+        // 定义组件
+        var TodoItem ={
+            // ↓↓↓ 传入数据流
+            props:["content","index"],  //传数据
+            template:"<li @click='handleItemClick' v-bind:class='[someclass,]' 绑定样式>{{content}}</li>",
+            // template:"<li @click='handleItemClick' v-bind:style='somestyle' 绑定样式>{{content}}</li>",
+            // ↑↑↑ 本地数据流
+            data(){
+                return{
+                    // 绑定样式两种方式(区分)
+                    someclass:"activated",  //内部样式
+                    somestyle:{             //内联样式
+                        color:"red"
+                    }
+                }
+            },
+            methods: {                  //传方法
+                handleItemClick:function(){
+                    // ← ← ← 事件冒泡
+                    this.$emit("delete",this.index)
+                    // ||||← 事件捕获 @delete
+                }
+            },
+        }
+
+        var app = new Vue({
+            el:"#app",
+            // 使用组件
+            components:{
+                TodoItemComment:TodoItem
+            },
+            data:{
+                // 属性监听 watch methods computed
+                list:["第一次提交","第二次提交"]
+            },
+            methods:{
+                dosomething:function(index){
+                    alert(index+"做些什么事情吧")
+                }
+            }
+        })
+    </script>
+</body>
+<style>
+    .activated{
+        color:red;
+    }
+</style>
+</html>

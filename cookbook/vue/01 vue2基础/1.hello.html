@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello world</title>
+
+    <!-- vue2.7开发环境版本，包含了有帮助的命令行警告 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="./vue.js"></script>
+</head>
+<body>
+<!-- 实现目标
+    1.找到app节点
+    2.更改其innerHTML属性
+    <div id="app"></div>
+    <script>
+        vue create component
+        Manually select features -> Babel | Sass/SCSS (with dart-sass) -> In package.json
+        var dom = document.getElementById("app")
+        // beforeMount
+        dom.innerHTML="hello world"
+        // mounted
+    </script>
+-->
+    <h3>1.vue最小实例</h3>
+    <h3>2.vue生命周期</h3>
+    <div id="app">{{content}}</div>
+    <script>
+        // 1.接管app节点
+        // 2.重新生成节点内容并返回
+        // 3.增加关键字，增强HTML，丰富表达
+        var app = new Vue({
+            el:"#app",
+            data:{
+                content:"hello world vue"
+            }
+        })
+    </script>
+</body>
+</html>
