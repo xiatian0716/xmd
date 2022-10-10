@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "vue-cli-service serve都干了啥":"https://blog.csdn.net/weixin_49477258/article/details/125426092"
   },
   "dependencies": {
     "core-js": "^3.6.5",
