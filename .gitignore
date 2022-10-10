@@ -1,5 +1,6 @@
 .vscode
 .idea
+*/.idea/
 
 # proto
 /hello
@@ -8,6 +9,7 @@
 *.log
 *.exe
 /cookbook/goweb/goweb
+
 
 # vue
 */node_modules/
